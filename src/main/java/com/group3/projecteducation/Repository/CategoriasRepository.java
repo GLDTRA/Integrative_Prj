@@ -12,7 +12,7 @@ import java.util.Optional;
 public interface CategoriasRepository extends JpaRepository<Categoria, Long> {
     public Optional<Categoria> findAllByTituloContainingIgnoreCase(@Param("titulo")String titulo);
 
-    public List<Categoria> findAllByAreaContainingIgnoreCase(@Param("area")String area);
+    public Optional<Categoria> findAllByAreaContainingIgnoreCase(@Param("area")String area);
 
 
 }

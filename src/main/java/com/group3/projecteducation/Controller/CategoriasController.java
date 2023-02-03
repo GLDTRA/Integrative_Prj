@@ -15,15 +15,12 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/curso")
+@RequestMapping("/categoria")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class CategoriasController {
 
     @Autowired
     private CategoriasRepository categoriasRepository;
-
-    @Autowired
-    private CursosRepository cursosRepository;
 
     @GetMapping
     public ResponseEntity<List<Categoria>> getAll(){
@@ -33,7 +30,17 @@ public class CategoriasController {
     @GetMapping("/titulo/{titulo}")
     public ResponseEntity<Optional<Categoria>> getByTitulo(@PathVariable String titulo){
         Optional<Categoria> categoria = categoriasRepository.findAllByTituloContainingIgnoreCase(titulo);
+        if(categoria.isEmpty())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        return ResponseEntity.ok(categoriasRepository.findAllByTituloContainingIgnoreCase(titulo));
+    }
 
+    @GetMapping("/area/{area}")
+    public ResponseEntity<Optional<Categoria>> getByArea(@PathVariable String area){
+        Optional<Categoria> categoria = categoriasRepository.findAllByAreaContainingIgnoreCase(area);
+        if(categoria.isEmpty())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        return ResponseEntity.ok(categoriasRepository.findAllByAreaContainingIgnoreCase(area));
     }
 
     @GetMapping("/{id}")
