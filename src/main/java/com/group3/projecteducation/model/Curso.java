@@ -1,9 +1,7 @@
 package com.group3.projecteducation.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
@@ -17,6 +15,11 @@ public class Curso {
 
     @NotBlank
     private String descricao;
+
+
+    @ManyToOne
+    @JsonIgnoreProperties("curso")
+    private Categoria categoria;
 
     private float preco;
 
@@ -60,5 +63,13 @@ public class Curso {
 
     public void setAvaliacao(short avaliacao) {
         this.avaliacao = avaliacao;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 }
