@@ -1,4 +1,4 @@
-package com.group3.projecteducation.Repository;
+package com.group3.projecteducation.repository;
 
 import com.group3.projecteducation.model.Categoria;
 import com.group3.projecteducation.model.Curso;

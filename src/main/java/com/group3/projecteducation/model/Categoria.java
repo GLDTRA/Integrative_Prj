@@ -13,7 +13,7 @@ public class Categoria {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Size(min = 0, max = 1000)
     private String descricao;
@@ -28,20 +28,12 @@ public class Categoria {
     @JsonIgnoreProperties("categoria")
     private List<Curso> curso;
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public List<Curso> getCurso() {
-        return curso;
-    }
-
-    public void setCurso(List<Curso> curso) {
-        this.curso = curso;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getDescricao() {
@@ -66,5 +58,13 @@ public class Categoria {
 
     public void setArea(String area) {
         this.area = area;
+    }
+
+    public List<Curso> getCurso() {
+        return curso;
+    }
+
+    public void setCurso(List<Curso> curso) {
+        this.curso = curso;
     }
 }

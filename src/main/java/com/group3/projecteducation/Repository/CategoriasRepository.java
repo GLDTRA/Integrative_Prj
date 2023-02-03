@@ -1,4 +1,4 @@
-package com.group3.projecteducation.Repository;
+package com.group3.projecteducation.repository;
 
 import com.group3.projecteducation.model.Categoria;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,9 +10,9 @@ import java.util.Optional;
 
 @Repository
 public interface CategoriasRepository extends JpaRepository<Categoria, Long> {
-    public Optional<Categoria> findAllByTituloContainingIgnoreCase(@Param("titulo")String titulo);
+    public Optional<Categoria> findAllByTituloContainingIgnoreCase(@Param("titulo") String titulo);
 
-    public Optional<Categoria> findAllByAreaContainingIgnoreCase(@Param("area")String area);
+    public Optional<Categoria> findAllByAreaContainingIgnoreCase(@Param("area") String area);
 
 
 }

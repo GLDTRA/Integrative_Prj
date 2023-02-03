@@ -1,8 +1,8 @@
-package com.group3.projecteducation.Controller;
+package com.group3.projecteducation.controller;
 
 import ch.qos.logback.core.pattern.util.RegularEscapeUtil;
-import com.group3.projecteducation.Repository.CategoriasRepository;
-import com.group3.projecteducation.Repository.CursosRepository;
+import com.group3.projecteducation.repository.CategoriasRepository;
+import com.group3.projecteducation.repository.CursosRepository;
 import com.group3.projecteducation.model.Categoria;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,6 +71,4 @@ public class CategoriasController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         categoriasRepository.deleteById(id);
     }
-
-
 }

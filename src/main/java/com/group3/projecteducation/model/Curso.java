@@ -8,7 +8,7 @@ import jakarta.validation.constraints.NotBlank;
 public class Curso {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @NotBlank
     private String titulo;
@@ -21,15 +21,16 @@ public class Curso {
     @JsonIgnoreProperties("curso")
     private Categoria categoria;
 
+
     private float preco;
 
     private short avaliacao;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -49,6 +50,14 @@ public class Curso {
         this.descricao = descricao;
     }
 
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
     public float getPreco() {
         return preco;
     }
@@ -63,13 +72,5 @@ public class Curso {
 
     public void setAvaliacao(short avaliacao) {
         this.avaliacao = avaliacao;
-    }
-
-    public Categoria getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
     }
 }
