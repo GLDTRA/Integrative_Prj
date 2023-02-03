@@ -22,8 +22,6 @@ public class Curso {
 
     private short avaliacao;
 
-    public String teste;
-    
     public long getId() {
         return id;
     }
