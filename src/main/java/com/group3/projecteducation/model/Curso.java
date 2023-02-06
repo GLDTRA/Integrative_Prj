@@ -16,15 +16,13 @@ public class Curso {
     @NotBlank
     private String descricao;
 
+    private float preco;
+
+    private short avaliacao;
 
     @ManyToOne
     @JsonIgnoreProperties("curso")
     private Categoria categoria;
-
-
-    private float preco;
-
-    private short avaliacao;
 
     public Long getId() {
         return id;
@@ -50,14 +48,6 @@ public class Curso {
         this.descricao = descricao;
     }
 
-    public Categoria getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
-    }
-
     public float getPreco() {
         return preco;
     }
@@ -72,5 +62,13 @@ public class Curso {
 
     public void setAvaliacao(short avaliacao) {
         this.avaliacao = avaliacao;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 }
