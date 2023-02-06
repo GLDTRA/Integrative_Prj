@@ -1,7 +1,7 @@
-package com.group3.projecteducation.Controller;
+package com.group3.projecteducation.controller;
 
-import com.group3.projecteducation.Repository.CategoriasRepository;
-import com.group3.projecteducation.Repository.CursosRepository;
+import com.group3.projecteducation.repository.CategoriasRepository;
+import com.group3.projecteducation.repository.CursosRepository;
 import com.group3.projecteducation.model.Curso;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/categoria")
+@RequestMapping("/curso")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class CursosController {
     @Autowired
@@ -54,7 +54,7 @@ public class CursosController {
 
     @PostMapping
     public ResponseEntity<Curso> post(@Valid @RequestBody Curso curso){
-        if(cursosRepository.existsById(curso.getCategoria().getId()))
+        if(categoriasRepository.existsById(curso.getCategoria().getId()))
             return ResponseEntity.status(HttpStatus.CREATED)
                     .body(cursosRepository.save(curso));
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
@@ -63,7 +63,7 @@ public class CursosController {
     @PutMapping
     public ResponseEntity<Curso> put(@Valid @RequestBody Curso curso) {
         if (cursosRepository.existsById(curso.getId())) {
-            if (cursosRepository.existsById(curso.getCategoria().getId()))
+            if (categoriasRepository.existsById(curso.getCategoria().getId()))
                 return ResponseEntity.status(HttpStatus.OK)
                         .body(cursosRepository.save(curso));
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
