@@ -1,7 +1,6 @@
 package com.group3.projecteducation.security;
 
 
-import com.group3.projecteducation.repository.UsuarioRepository;
 import com.group3.projecteducation.model.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,7 +21,7 @@ public class UserDetailsServiceImpl  implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<Usuario> usuario =usuarioRepository.findByUsuario(username);
+        Optional<Usuario> usuario =usuarioRepository.findByEmail(username);
 
         if(usuario.isPresent())
             return new UserDetailsImpl(usuario.get());
