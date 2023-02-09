@@ -9,6 +9,7 @@ import java.util.List;
 
 
 @Entity
+@Table(name = "tb_categorias")
 public class Categoria {
 
     @Id
