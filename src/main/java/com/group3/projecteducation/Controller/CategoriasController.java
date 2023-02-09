@@ -28,16 +28,15 @@ public class CategoriasController {
     }
 
     @GetMapping("/titulo/{titulo}")
-    public ResponseEntity<Optional<Categoria>> getByTitulo(@PathVariable String titulo){
-        Optional<Categoria> categoria = categoriasRepository.findAllByTituloContainingIgnoreCase(titulo);
+    public ResponseEntity<List<Categoria>> getByTitulo(@PathVariable String titulo){
+        List<Categoria> categoria = categoriasRepository.findAllByAreaContainingIgnoreCase(titulo);
         if(categoria.isEmpty())
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        return ResponseEntity.ok(categoriasRepository.findAllByTituloContainingIgnoreCase(titulo));
+        return ResponseEntity.ok(categoriasRepository.findAllByAreaContainingIgnoreCase(titulo));
     }
-
     @GetMapping("/area/{area}")
-    public ResponseEntity<Optional<Categoria>> getByArea(@PathVariable String area){
-        Optional<Categoria> categoria = categoriasRepository.findAllByAreaContainingIgnoreCase(area);
+    public ResponseEntity<List<Categoria>> getByArea(@PathVariable String area){
+        List<Categoria> categoria = categoriasRepository.findAllByAreaContainingIgnoreCase(area);
         if(categoria.isEmpty())
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         return ResponseEntity.ok(categoriasRepository.findAllByAreaContainingIgnoreCase(area));
@@ -48,8 +47,7 @@ public class CategoriasController {
         return  categoriasRepository.findById(id)
                 .map(resposta -> ResponseEntity.ok(resposta))
                 .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
-            }
-
+    }
     @PostMapping
     public ResponseEntity<Categoria>post(@Valid @RequestBody Categoria categoria ){
         return ResponseEntity.status(HttpStatus.CREATED).body(categoriasRepository.save(categoria));
