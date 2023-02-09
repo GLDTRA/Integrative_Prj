@@ -1,8 +1,11 @@
 package com.group3.projecteducation.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.group3.projecteducation.TipoUsuario;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+
+import java.util.List;
 
 
 @Entity
@@ -23,6 +26,12 @@ public class Usuario {
 
     @NotBlank
     private TipoUsuario tipoUsuario;
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
+    @JsonIgnoreProperties("usuario")
+    private List<Curso> curso;
+
+
 
     public Long getId() {
         return id;
@@ -62,5 +71,13 @@ public class Usuario {
 
     public void setTipoUsuario(TipoUsuario tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
+    }
+
+    public List<Curso> getCurso() {
+        return curso;
+    }
+
+    public void setCurso(List<Curso> curso) {
+        this.curso = curso;
     }
 }

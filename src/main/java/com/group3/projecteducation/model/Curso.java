@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
+import java.util.List;
+
 @Entity
 @Table(name = "tb_cursos")
 public class Curso {
@@ -24,6 +26,8 @@ public class Curso {
     @ManyToOne
     @JsonIgnoreProperties("curso")
     private Categoria categoria;
+
+
 
     public Long getId() {
         return id;
@@ -72,4 +76,6 @@ public class Curso {
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
+
+
 }
