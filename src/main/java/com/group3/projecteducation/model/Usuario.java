@@ -4,7 +4,6 @@ import com.group3.projecteducation.TipoUsuario;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
-
 @Entity
 @Table(name = "tb_usuarios")
 public class Usuario {
