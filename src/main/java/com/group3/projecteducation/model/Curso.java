@@ -5,8 +5,10 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
 import java.util.List;
+
 import java.util.Optional;
 import java.util.Set;
+
 
 @Entity
 @Table(name = "tb_cursos")
@@ -29,9 +31,11 @@ public class Curso {
     @JsonIgnoreProperties("curso")
     private Categoria categoria;
 
+
     @ManyToMany(mappedBy = "curso")
     @JsonIgnoreProperties("curso")
-    List<Usuario> usuario;
+    Set<Usuario> usuario;
+
 
     public Long getId() {
         return this.id;
@@ -81,18 +85,18 @@ public class Curso {
         this.categoria = categoria;
     }
 
-    public List<Usuario> getUsuario() {
+    public Set<Usuario> getUsuario() {
         return this.usuario;
     }
 
-    public void setUsuario(List<Usuario> usuario) {
+    public void setUsuario(Set<Usuario> usuario) {
         this.usuario = usuario;
     }
 
     public Curso() {
     }
 
-    public Curso(Long id, @NotBlank String titulo, @NotBlank String descricao, float preco, short avaliacao, Categoria categoria, List<Usuario> usuario) {
+    public Curso(Long id, @NotBlank String titulo, @NotBlank String descricao, float preco, short avaliacao, Categoria categoria, Set<Usuario> usuario) {
         this.id = id;
         this.titulo = titulo;
         this.descricao = descricao;
@@ -101,4 +105,5 @@ public class Curso {
         this.categoria = categoria;
         this.usuario = usuario;
     }
+
 }

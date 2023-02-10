@@ -8,24 +8,32 @@ import java.util.Collection;
 import java.util.List;
 
 public class UserDetailsImpl implements UserDetails {
-    private static final long serialVersionUID = 1L;
-    private String username;
+
+
+    private static final long serialVersionUID =1L;
+
+    private String userName;
     private String password;
+
     private List<GrantedAuthority> authorities;
+
     public UserDetailsImpl (Usuario user){
-        this.username = user.getUsuario();
+        this.userName = user.getEmail();
         this.password = user.getSenha();
     }
 
-    public UserDetailsImpl(){}
+    public UserDetailsImpl (){ }
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities(){
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+
+
         return authorities;
     }
 
     @Override
     public String getPassword(){
+
         return password;
     }
 
@@ -53,4 +61,5 @@ public class UserDetailsImpl implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
 }

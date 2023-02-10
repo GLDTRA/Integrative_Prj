@@ -1,5 +1,6 @@
 package com.group3.projecteducation.Repository;
 
+
 import com.group3.projecteducation.TipoUsuario;
 import com.group3.projecteducation.model.Curso;
 import com.group3.projecteducation.model.Usuario;
@@ -19,4 +20,5 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     List<Usuario> findAllByNomeContainingIgnoreCase(@Param("nome") String nome);
     List<Usuario> findAllByTipoUsuario(@Param("tipoUsuario") String tipoUsuario);
     List<Usuario> findByCurso (@Param("curso") Curso curso);
+
 }
