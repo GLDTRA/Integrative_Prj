@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -27,7 +28,7 @@ public class Categoria {
 
     @OneToMany(mappedBy = "categoria", cascade = CascadeType.REMOVE)
     @JsonIgnoreProperties("categoria")
-    private List<Curso> curso;
+    private Set<Curso> curso;
 
     public Long getId() {
         return this.id;
@@ -61,18 +62,18 @@ public class Categoria {
         this.area = area;
     }
 
-    public List<Curso> getCurso() {
+    public Set<Curso> getCurso() {
         return this.curso;
     }
 
-    public void setCurso(List<Curso> curso) {
+    public void setCurso(Set<Curso> curso) {
         this.curso = curso;
     }
 
     public Categoria() {
     }
 
-    public Categoria(Long id, @Size(min = 0, max = 1000) String descricao, @NotBlank String titulo, @NotBlank String area, List<Curso> curso) {
+    public Categoria(Long id, @Size(min = 0, max = 1000) String descricao, @NotBlank String titulo, @NotBlank String area, Set<Curso> curso) {
         this.id = id;
         this.descricao = descricao;
         this.titulo = titulo;
