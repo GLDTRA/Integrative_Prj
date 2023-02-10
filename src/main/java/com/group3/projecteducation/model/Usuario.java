@@ -1,16 +1,11 @@
 package com.group3.projecteducation.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import com.group3.projecteducation.TipoUsuario;
-
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
 import java.util.List;
-
 import java.util.Set;
-
 
 
 @Entity
@@ -40,12 +35,6 @@ public class Usuario {
             inverseJoinColumns = @JoinColumn(name = "curso_id")
     )
     private Set<Curso> curso;
-
-
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
-    @JsonIgnoreProperties("usuario")
-    private List<Curso> curso;
-
 
 
     public Long getId() {
@@ -105,14 +94,6 @@ public class Usuario {
         this.usuario = usuario;
         this.senha = senha;
         this.tipoUsuario = tipoUsuario;
-        this.curso = curso;
-    }
-
-    public List<Curso> getCurso() {
-        return curso;
-    }
-
-    public void setCurso(List<Curso> curso) {
         this.curso = curso;
     }
 }
