@@ -15,5 +15,5 @@ import java.util.Set;
 public interface CursosRepository extends JpaRepository<Curso, Long> {
     Optional<Curso> findAllByTituloContainingIgnoreCase(@Param("titulo")String titulo);
     Optional<Curso> findAllByDescricaoContainingIgnoreCase(@Param("descricao")String descricao);
-    Optional<Curso> findAllByUsuariosMatriculadosIn(@Param("usuariosMatriculados") Set<Usuario> usuariosMatriculados);
+    Optional<Curso> findAllByUsuarioIn(@Param("usuario") Set<Usuario> usuario);
 }

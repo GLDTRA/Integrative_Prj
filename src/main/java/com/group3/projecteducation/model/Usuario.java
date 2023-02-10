@@ -34,7 +34,7 @@ public class Usuario {
             joinColumns = @JoinColumn(name = "usuario_id"),
             inverseJoinColumns = @JoinColumn(name = "curso_id")
     )
-    private Set<Curso> cursosMatriculados;
+    private Set<Curso> curso;
 
 
     public Long getId() {
@@ -77,23 +77,23 @@ public class Usuario {
         this.tipoUsuario = tipoUsuario;
     }
 
-    public Set<Curso> getCursosMatriculados() {
-        return this.cursosMatriculados;
+    public Set<Curso> getCurso() {
+        return this.curso;
     }
 
-    public void setCursosMatriculados(Set<Curso> cursosMatriculados) {
-        this.cursosMatriculados = cursosMatriculados;
+    public void setCurso(Set<Curso> curso) {
+        this.curso = curso;
     }
 
     public Usuario() {
     }
 
-    public Usuario(Long id, @NotBlank String nome, @NotBlank String usuario, @NotBlank String senha, @NotBlank String tipoUsuario, Set<Curso> cursosMatriculados) {
+    public Usuario(Long id, @NotBlank String nome, @NotBlank String usuario, @NotBlank String senha, @NotBlank String tipoUsuario, Set<Curso> curso) {
         this.id = id;
         this.nome = nome;
         this.usuario = usuario;
         this.senha = senha;
         this.tipoUsuario = tipoUsuario;
-        this.cursosMatriculados = cursosMatriculados;
+        this.curso = curso;
     }
 }

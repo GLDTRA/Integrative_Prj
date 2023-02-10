@@ -30,7 +30,7 @@ public class UsuarioController {
     @Autowired
     private CategoriasRepository categoriasRepository;
 
-    @GetMapping("/all")
+    @GetMapping("/")
     public ResponseEntity<List<Usuario>> getAll(){
         return ResponseEntity.ok(usuarioRepository.findAll());
     }
@@ -42,17 +42,17 @@ public class UsuarioController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @GetMapping("/{usuario}")
+    @GetMapping("/usuario/{usuario}")
     public ResponseEntity<Optional<Usuario>> getByUsuario(@PathVariable String usuario){
         return ResponseEntity.ok(usuarioRepository.findByUsuario(usuario));
     }
 
-    @GetMapping("/{nome}")
+    @GetMapping("/nome/{nome}")
     public ResponseEntity<List<Usuario>> getByNome(@PathVariable String nome){
         return ResponseEntity.ok(usuarioRepository.findAllByNomeContainingIgnoreCase(nome));
     }
 
-    @GetMapping("/{tipoUsuario}")
+    @GetMapping("/tipo/{tipoUsuario}")
     public ResponseEntity<List<Usuario>> getByTipoUsuario(@PathVariable String tipoUsuario){
         return ResponseEntity.ok(usuarioRepository.findAllByTipoUsuario(tipoUsuario));
     }
@@ -64,9 +64,9 @@ public class UsuarioController {
                 .orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
     }
 
-    @GetMapping("/{cursos}")
+    @GetMapping("/curso/{cursos}")
     public ResponseEntity<List<Usuario>> getByCurso(@PathVariable Usuario usuario){
-        return ResponseEntity.ok(usuarioRepository.findAllByCursosMatriculadosIn(usuario.getCursosMatriculados()));
+        return ResponseEntity.ok(usuarioRepository.findAllByCursoIn(usuario.getCurso()));
     }
 
     @PostMapping("/cadastrar")
