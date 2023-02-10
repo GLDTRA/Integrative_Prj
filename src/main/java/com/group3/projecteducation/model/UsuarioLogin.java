@@ -1,10 +1,13 @@
 package com.group3.projecteducation.model;
 
+import com.group3.projecteducation.TipoUsuario;
+
 public class UsuarioLogin {
     private Long id;
     private String nome;
-    private String email;
+    private String usuario;
     private String senha;
+    private String tipoUsuario;
     private String token;
 
     public Long getId() {
@@ -23,12 +26,12 @@ public class UsuarioLogin {
         this.nome = nome;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsuario() {
+        return usuario;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
     public String getSenha() {
@@ -37,6 +40,14 @@ public class UsuarioLogin {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public String getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public void setTipoUsuario(String tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
     }
 
     public String getToken() {

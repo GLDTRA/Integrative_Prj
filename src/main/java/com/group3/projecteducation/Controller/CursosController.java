@@ -52,7 +52,8 @@ public class CursosController {
         return ResponseEntity.ok(cursosRepository.findAllByDescricaoContainingIgnoreCase(descricao));
     }
 
-    @PostMapping
+
+    @PostMapping("/cadastrar")
     public ResponseEntity<Curso> post(@Valid @RequestBody Curso curso){
         if(categoriasRepository.existsById(curso.getCategoria().getId()))
             return ResponseEntity.status(HttpStatus.CREATED)
