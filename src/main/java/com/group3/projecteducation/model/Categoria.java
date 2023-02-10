@@ -30,7 +30,7 @@ public class Categoria {
     private List<Curso> curso;
 
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Long id) {
@@ -38,7 +38,7 @@ public class Categoria {
     }
 
     public String getDescricao() {
-        return descricao;
+        return this.descricao;
     }
 
     public void setDescricao(String descricao) {
@@ -46,7 +46,7 @@ public class Categoria {
     }
 
     public String getTitulo() {
-        return titulo;
+        return this.titulo;
     }
 
     public void setTitulo(String titulo) {
@@ -54,7 +54,7 @@ public class Categoria {
     }
 
     public String getArea() {
-        return area;
+        return this.area;
     }
 
     public void setArea(String area) {
@@ -62,10 +62,21 @@ public class Categoria {
     }
 
     public List<Curso> getCurso() {
-        return curso;
+        return this.curso;
     }
 
     public void setCurso(List<Curso> curso) {
+        this.curso = curso;
+    }
+
+    public Categoria() {
+    }
+
+    public Categoria(Long id, @Size(min = 0, max = 1000) String descricao, @NotBlank String titulo, @NotBlank String area, List<Curso> curso) {
+        this.id = id;
+        this.descricao = descricao;
+        this.titulo = titulo;
+        this.area = area;
         this.curso = curso;
     }
 }

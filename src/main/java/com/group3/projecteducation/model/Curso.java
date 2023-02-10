@@ -6,6 +6,10 @@ import jakarta.validation.constraints.NotBlank;
 
 import java.util.List;
 
+import java.util.Optional;
+import java.util.Set;
+
+
 @Entity
 @Table(name = "tb_cursos")
 public class Curso {
@@ -28,9 +32,13 @@ public class Curso {
     private Categoria categoria;
 
 
+    @ManyToMany(mappedBy = "curso")
+    @JsonIgnoreProperties("curso")
+    Set<Usuario> usuario;
+
 
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Long id) {
@@ -38,7 +46,7 @@ public class Curso {
     }
 
     public String getTitulo() {
-        return titulo;
+        return this.titulo;
     }
 
     public void setTitulo(String titulo) {
@@ -46,7 +54,7 @@ public class Curso {
     }
 
     public String getDescricao() {
-        return descricao;
+        return this.descricao;
     }
 
     public void setDescricao(String descricao) {
@@ -54,7 +62,7 @@ public class Curso {
     }
 
     public float getPreco() {
-        return preco;
+        return this.preco;
     }
 
     public void setPreco(float preco) {
@@ -62,7 +70,7 @@ public class Curso {
     }
 
     public short getAvaliacao() {
-        return avaliacao;
+        return this.avaliacao;
     }
 
     public void setAvaliacao(short avaliacao) {
@@ -70,12 +78,32 @@ public class Curso {
     }
 
     public Categoria getCategoria() {
-        return categoria;
+        return this.categoria;
     }
 
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
 
+    public Set<Usuario> getUsuario() {
+        return this.usuario;
+    }
+
+    public void setUsuario(Set<Usuario> usuario) {
+        this.usuario = usuario;
+    }
+
+    public Curso() {
+    }
+
+    public Curso(Long id, @NotBlank String titulo, @NotBlank String descricao, float preco, short avaliacao, Categoria categoria, Set<Usuario> usuario) {
+        this.id = id;
+        this.titulo = titulo;
+        this.descricao = descricao;
+        this.preco = preco;
+        this.avaliacao = avaliacao;
+        this.categoria = categoria;
+        this.usuario = usuario;
+    }
 
 }
