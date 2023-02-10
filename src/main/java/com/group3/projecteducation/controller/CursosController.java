@@ -28,7 +28,6 @@ public class CursosController {
         return ResponseEntity.ok(cursosRepository.findAll());
     }
 
-
     @GetMapping("/{id}")
     public ResponseEntity<Curso> getById(@PathVariable Long id) {
         return cursosRepository.findById(id)
@@ -37,21 +36,20 @@ public class CursosController {
     }
 
     @GetMapping("/titulo/{titulo}")
-    public ResponseEntity<Optional<Curso>> getByTitulo(@PathVariable String titulo){
-        Optional<Curso> curso = cursosRepository.findAllByTituloContainingIgnoreCase(titulo);
+    public ResponseEntity<List<Curso>> getByTitulo(@PathVariable String titulo){
+        List<Curso> curso = cursosRepository.findAllByTituloContainingIgnoreCase(titulo);
         if(curso.isEmpty())
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         return ResponseEntity.ok(cursosRepository.findAllByTituloContainingIgnoreCase(titulo));
     }
 
     @GetMapping("/descricao/{descricao}")
-    public ResponseEntity<Optional<Curso>> getByDescricao(@PathVariable String descricao){
-        Optional<Curso> curso = cursosRepository.findAllByDescricaoContainingIgnoreCase(descricao);
+    public ResponseEntity<List<Curso>> getByDescricao(@PathVariable String descricao){
+        List<Curso> curso = cursosRepository.findAllByDescricaoContainingIgnoreCase(descricao);
         if(curso.isEmpty())
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         return ResponseEntity.ok(cursosRepository.findAllByDescricaoContainingIgnoreCase(descricao));
     }
-
 
     @PostMapping("/cadastrar")
     public ResponseEntity<Curso> post(@Valid @RequestBody Curso curso){

@@ -1,9 +1,8 @@
-package com.group3.projecteducation.Controller;
+package com.group3.projecteducation.controller;
 
-import com.group3.projecteducation.Repository.UsuarioRepository;
+import com.group3.projecteducation.repository.UsuarioRepository;
 
 
-import com.group3.projecteducation.model.Curso;
 import com.group3.projecteducation.model.Usuario;
 import com.group3.projecteducation.model.UsuarioLogin;
 import com.group3.projecteducation.service.UsuarioService;

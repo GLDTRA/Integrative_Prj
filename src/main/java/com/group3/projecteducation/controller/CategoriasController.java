@@ -1,8 +1,6 @@
 package com.group3.projecteducation.controller;
 
-import ch.qos.logback.core.pattern.util.RegularEscapeUtil;
 import com.group3.projecteducation.repository.CategoriasRepository;
-import com.group3.projecteducation.repository.CursosRepository;
 import com.group3.projecteducation.model.Categoria;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

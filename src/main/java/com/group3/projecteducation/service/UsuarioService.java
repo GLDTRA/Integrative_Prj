@@ -3,7 +3,7 @@ package com.group3.projecteducation.service;
 import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 
-import com.group3.projecteducation.Repository.UsuarioRepository;
+import com.group3.projecteducation.repository.UsuarioRepository;
 import com.group3.projecteducation.model.Usuario;
 import com.group3.projecteducation.model.UsuarioLogin;
 import org.apache.commons.codec.binary.Base64;
