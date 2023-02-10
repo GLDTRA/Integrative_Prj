@@ -1,18 +1,18 @@
 package com.group3.projecteducation.Controller;
 
 import com.group3.projecteducation.Repository.UsuarioRepository;
-import com.group3.projecteducation.TipoUsuario;
-import com.group3.projecteducation.model.Categoria;
+
+
 import com.group3.projecteducation.model.Curso;
 import com.group3.projecteducation.model.Usuario;
 import com.group3.projecteducation.model.UsuarioLogin;
-import com.group3.projecteducation.repository.CategoriasRepository;
 import com.group3.projecteducation.service.UsuarioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,9 +26,6 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
-
-    @Autowired
-    private CategoriasRepository categoriasRepository;
 
     @GetMapping("/")
     public ResponseEntity<List<Usuario>> getAll(){
@@ -64,11 +61,6 @@ public class UsuarioController {
                 .orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
     }
 
-    @GetMapping("/curso/{cursos}")
-    public ResponseEntity<List<Usuario>> getByCurso(@PathVariable Usuario usuario){
-        return ResponseEntity.ok(usuarioRepository.findAllByCursoIn(usuario.getCurso()));
-    }
-
     @PostMapping("/cadastrar")
     public ResponseEntity<Usuario> postUsuario(@Valid @RequestBody Usuario usuario){
         return usuarioService.cadastrarUsuario(usuario)
@@ -83,7 +75,12 @@ public class UsuarioController {
                 .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 
-
-
-
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id){
+        Optional<Usuario> usuario = usuarioRepository.findById(id);
+        if(usuario.isEmpty())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        usuarioRepository.deleteById(id);
+    }
 }

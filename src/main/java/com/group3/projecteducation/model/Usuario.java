@@ -1,10 +1,10 @@
 package com.group3.projecteducation.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.group3.projecteducation.TipoUsuario;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
+import java.util.List;
 import java.util.Set;
 
 
@@ -78,7 +78,7 @@ public class Usuario {
     }
 
     public Set<Curso> getCurso() {
-        return this.curso;
+        return curso;
     }
 
     public void setCurso(Set<Curso> curso) {

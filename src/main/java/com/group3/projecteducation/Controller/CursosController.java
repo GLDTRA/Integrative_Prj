@@ -32,7 +32,7 @@ public class CursosController {
     @GetMapping("/{id}")
     public ResponseEntity<Curso> getById(@PathVariable Long id) {
         return cursosRepository.findById(id)
-                .map(resposta -> ResponseEntity.ok(resposta))
+                .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 
@@ -61,7 +61,7 @@ public class CursosController {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
-    @PutMapping
+    @PutMapping("/atualizar")
     public ResponseEntity<Curso> put(@Valid @RequestBody Curso curso) {
         if (cursosRepository.existsById(curso.getId())) {
             if (categoriasRepository.existsById(curso.getCategoria().getId()))

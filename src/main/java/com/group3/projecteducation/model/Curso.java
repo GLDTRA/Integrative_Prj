@@ -31,7 +31,7 @@ public class Curso {
 
     @ManyToMany(mappedBy = "curso")
     @JsonIgnoreProperties("curso")
-    Set<Usuario> usuario;
+    List<Usuario> usuario;
 
     public Long getId() {
         return this.id;
@@ -81,18 +81,18 @@ public class Curso {
         this.categoria = categoria;
     }
 
-    public Set<Usuario> getUsuario() {
+    public List<Usuario> getUsuario() {
         return this.usuario;
     }
 
-    public void setUsuario(Set<Usuario> usuario) {
+    public void setUsuario(List<Usuario> usuario) {
         this.usuario = usuario;
     }
 
     public Curso() {
     }
 
-    public Curso(Long id, @NotBlank String titulo, @NotBlank String descricao, float preco, short avaliacao, Categoria categoria, Set<Usuario> usuario) {
+    public Curso(Long id, @NotBlank String titulo, @NotBlank String descricao, float preco, short avaliacao, Categoria categoria, List<Usuario> usuario) {
         this.id = id;
         this.titulo = titulo;
         this.descricao = descricao;

@@ -46,16 +46,16 @@ public class CategoriasController {
     @GetMapping("/{id}")
     public ResponseEntity<Categoria> getById(@PathVariable Long id){
         return  categoriasRepository.findById(id)
-                .map(resposta -> ResponseEntity.ok(resposta))
+                .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
             }
 
-    @PostMapping
+    @PostMapping("/cadastrar")
     public ResponseEntity<Categoria>post(@Valid @RequestBody Categoria categoria ){
         return ResponseEntity.status(HttpStatus.CREATED).body(categoriasRepository.save(categoria));
     }
 
-    @PutMapping
+    @PutMapping("/atualizar")
     public ResponseEntity<Categoria> Put(@Valid @RequestBody Categoria categoria){
         return categoriasRepository.findById(categoria.getId())
                 .map(resposta -> ResponseEntity.status(HttpStatus.OK)
