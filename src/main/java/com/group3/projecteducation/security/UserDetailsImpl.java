@@ -18,7 +18,7 @@ public class UserDetailsImpl implements UserDetails {
     private List<GrantedAuthority> authorities;
 
     public UserDetailsImpl (Usuario user){
-        this.userName = user.getEmail();
+        this.userName = user.getUsuario();
         this.password = user.getSenha();
     }
 
@@ -39,7 +39,7 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public String getUsername() {
-        return username;
+        return userName;
     }
 
     @Override
