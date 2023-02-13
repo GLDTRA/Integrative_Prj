@@ -1,8 +1,10 @@
 package com.group3.projecteducation.controller;
 
+import com.group3.projecteducation.model.Usuario;
 import com.group3.projecteducation.repository.CategoriasRepository;
 import com.group3.projecteducation.repository.CursosRepository;
 import com.group3.projecteducation.model.Curso;
+import com.group3.projecteducation.repository.UsuarioRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,33 +25,43 @@ public class CursosController {
     @Autowired
     private CategoriasRepository categoriasRepository;
 
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
     @GetMapping
     public ResponseEntity<List<Curso>> getAll(){
         return ResponseEntity.ok(cursosRepository.findAll());
     }
 
+
     @GetMapping("/{id}")
     public ResponseEntity<Curso> getById(@PathVariable Long id) {
         return cursosRepository.findById(id)
-                .map(ResponseEntity::ok)
+                .map(resposta -> ResponseEntity.ok(resposta))
                 .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 
     @GetMapping("/titulo/{titulo}")
-    public ResponseEntity<List<Curso>> getByTitulo(@PathVariable String titulo){
-        List<Curso> curso = cursosRepository.findAllByTituloContainingIgnoreCase(titulo);
+    public ResponseEntity<Optional<Curso>> getByTitulo(@PathVariable String titulo){
+        Optional<Curso> curso = cursosRepository.findAllByTituloContainingIgnoreCase(titulo);
         if(curso.isEmpty())
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         return ResponseEntity.ok(cursosRepository.findAllByTituloContainingIgnoreCase(titulo));
     }
 
     @GetMapping("/descricao/{descricao}")
-    public ResponseEntity<List<Curso>> getByDescricao(@PathVariable String descricao){
-        List<Curso> curso = cursosRepository.findAllByDescricaoContainingIgnoreCase(descricao);
+    public ResponseEntity<Optional<Curso>> getByDescricao(@PathVariable String descricao){
+        Optional<Curso> curso = cursosRepository.findAllByDescricaoContainingIgnoreCase(descricao);
         if(curso.isEmpty())
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         return ResponseEntity.ok(cursosRepository.findAllByDescricaoContainingIgnoreCase(descricao));
     }
+
+    @GetMapping("/usuario/{id}")
+    public ResponseEntity<List<Curso>> getByUsuario(@PathVariable Long id){
+        return ResponseEntity.ok(cursosRepository.findAllByUsuarioContaining(usuarioRepository.findById(id)));
+    }
+
 
     @PostMapping("/cadastrar")
     public ResponseEntity<Curso> post(@Valid @RequestBody Curso curso){

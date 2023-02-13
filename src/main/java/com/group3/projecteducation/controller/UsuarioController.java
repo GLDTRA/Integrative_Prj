@@ -1,10 +1,11 @@
 package com.group3.projecteducation.controller;
 
+import com.group3.projecteducation.model.Curso;
+import com.group3.projecteducation.repository.CursosRepository;
 import com.group3.projecteducation.repository.UsuarioRepository;
-
-
 import com.group3.projecteducation.model.Usuario;
 import com.group3.projecteducation.model.UsuarioLogin;
+import com.group3.projecteducation.repository.CategoriasRepository;
 import com.group3.projecteducation.service.UsuarioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,12 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private CategoriasRepository categoriasRepository;
+
+    @Autowired
+    private CursosRepository cursosRepository;
 
     @GetMapping("/")
     public ResponseEntity<List<Usuario>> getAll(){
@@ -51,6 +58,11 @@ public class UsuarioController {
     @GetMapping("/tipo/{tipoUsuario}")
     public ResponseEntity<List<Usuario>> getByTipoUsuario(@PathVariable String tipoUsuario){
         return ResponseEntity.ok(usuarioRepository.findAllByTipoUsuario(tipoUsuario));
+    }
+
+    @GetMapping("/curso/{id}")
+    public ResponseEntity<List<Usuario>> getByCurso(@PathVariable Long id){
+        return ResponseEntity.ok(usuarioRepository.findAllByCursoContaining(cursosRepository.findById(id)));
     }
 
     @GetMapping("/logar")
