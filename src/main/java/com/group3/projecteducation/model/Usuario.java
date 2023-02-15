@@ -27,15 +27,20 @@ public class Usuario {
     @NotBlank
     private String tipoUsuario;
 
-   @ManyToMany
+    @ManyToOne
     @JsonIgnoreProperties("usuario")
-    @JoinTable(
-            name = "cursos_matriculados",
-            joinColumns = @JoinColumn(name = "usuario_id"),
-            inverseJoinColumns = @JoinColumn(name = "curso_id")
-    )
-    private Set<Curso> curso;
+    private Curso curso;
 
+    public Usuario() {
+    }
+
+    public Usuario(Long id, String nome, String usuario, String senha, String tipoUsuario) {
+        this.id = id;
+        this.nome = nome;
+        this.usuario = usuario;
+        this.senha = senha;
+        this.tipoUsuario = tipoUsuario;
+    }
 
     public Long getId() {
         return this.id;
@@ -77,23 +82,12 @@ public class Usuario {
         this.tipoUsuario = tipoUsuario;
     }
 
-    public Set<Curso> getCurso() {
-        return curso;
+    public Curso getCurso() {
+        return this.curso;
     }
 
-    public void setCurso(Set<Curso> curso) {
+    public void setCurso(Curso curso) {
         this.curso = curso;
     }
 
-    public Usuario() {
-    }
-
-    public Usuario(Long id, @NotBlank String nome, @NotBlank String usuario, @NotBlank String senha, @NotBlank String tipoUsuario, Set<Curso> curso) {
-        this.id = id;
-        this.nome = nome;
-        this.usuario = usuario;
-        this.senha = senha;
-        this.tipoUsuario = tipoUsuario;
-        this.curso = curso;
-    }
 }

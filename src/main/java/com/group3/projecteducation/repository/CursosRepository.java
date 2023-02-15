@@ -13,7 +13,7 @@ import java.util.Set;
 
 @Repository
 public interface CursosRepository extends JpaRepository<Curso, Long> {
-    Optional<Curso> findAllByTituloContainingIgnoreCase(@Param("titulo")String titulo);
-    Optional<Curso> findAllByDescricaoContainingIgnoreCase(@Param("descricao")String descricao);
-    List<Curso> findAllByUsuarioContaining (@Param("usuario") Optional<Usuario> usuario);
+    List<Curso> findAllByTituloContainingIgnoreCase(@Param("titulo")String titulo);
+    List<Curso> findAllByDescricaoContainingIgnoreCase(@Param("descricao")String descricao);
+    List<Curso> findAllByCategoria (@Param("categoria") Optional<Categoria> categoria);
 }

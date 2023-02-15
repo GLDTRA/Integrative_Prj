@@ -31,11 +31,20 @@ public class Curso {
     @JsonIgnoreProperties("curso")
     private Categoria categoria;
 
-
-    @ManyToMany(mappedBy = "curso")
+    @OneToMany(mappedBy = "curso", cascade = CascadeType.REMOVE)
     @JsonIgnoreProperties("curso")
-    List<Usuario> usuario;
+    private Set<Usuario> usuario;
 
+    public Curso() {
+    }
+
+    public Curso(Long id, @NotBlank String titulo, @NotBlank String descricao, float preco, short avaliacao) {
+        this.id = id;
+        this.titulo = titulo;
+        this.descricao = descricao;
+        this.preco = preco;
+        this.avaliacao = avaliacao;
+    }
 
     public Long getId() {
         return this.id;
@@ -85,25 +94,11 @@ public class Curso {
         this.categoria = categoria;
     }
 
-    public List<Usuario> getUsuario() {
+    public Set<Usuario> getUsuario() {
         return this.usuario;
     }
 
-    public void setUsuario(List<Usuario> usuario) {
+    public void setUsuario(Set<Usuario> usuario) {
         this.usuario = usuario;
     }
-
-    public Curso() {
-    }
-
-    public Curso(Long id, @NotBlank String titulo, @NotBlank String descricao, float preco, short avaliacao, Categoria categoria, List<Usuario> usuario) {
-        this.id = id;
-        this.titulo = titulo;
-        this.descricao = descricao;
-        this.preco = preco;
-        this.avaliacao = avaliacao;
-        this.categoria = categoria;
-        this.usuario = usuario;
-    }
-
 }

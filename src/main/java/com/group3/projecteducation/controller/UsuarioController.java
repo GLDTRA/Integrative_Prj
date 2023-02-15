@@ -52,17 +52,26 @@ public class UsuarioController {
 
     @GetMapping("/nome/{nome}")
     public ResponseEntity<List<Usuario>> getByNome(@PathVariable String nome){
+        List<Usuario> usuario = usuarioRepository.findAllByNomeContainingIgnoreCase(nome);
+        if(usuario.isEmpty())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         return ResponseEntity.ok(usuarioRepository.findAllByNomeContainingIgnoreCase(nome));
     }
 
     @GetMapping("/tipo/{tipoUsuario}")
     public ResponseEntity<List<Usuario>> getByTipoUsuario(@PathVariable String tipoUsuario){
+        List<Usuario> usuario = usuarioRepository.findAllByTipoUsuario(tipoUsuario);
+        if(usuario.isEmpty())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         return ResponseEntity.ok(usuarioRepository.findAllByTipoUsuario(tipoUsuario));
     }
 
     @GetMapping("/curso/{id}")
     public ResponseEntity<List<Usuario>> getByCurso(@PathVariable Long id){
-        return ResponseEntity.ok(usuarioRepository.findAllByCursoContaining(cursosRepository.findById(id)));
+        List<Usuario> usuario = usuarioRepository.findAllByCurso(cursosRepository.findById(id));
+        if(usuario.isEmpty())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        return ResponseEntity.ok(usuarioRepository.findAllByCurso(cursosRepository.findById(id)));
     }
 
     @GetMapping("/logar")

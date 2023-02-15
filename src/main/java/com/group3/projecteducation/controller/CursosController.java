@@ -42,24 +42,27 @@ public class CursosController {
     }
 
     @GetMapping("/titulo/{titulo}")
-    public ResponseEntity<Optional<Curso>> getByTitulo(@PathVariable String titulo){
-        Optional<Curso> curso = cursosRepository.findAllByTituloContainingIgnoreCase(titulo);
+    public ResponseEntity<List<Curso>> getByTitulo(@PathVariable String titulo){
+        List<Curso> curso = cursosRepository.findAllByTituloContainingIgnoreCase(titulo);
         if(curso.isEmpty())
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         return ResponseEntity.ok(cursosRepository.findAllByTituloContainingIgnoreCase(titulo));
     }
 
     @GetMapping("/descricao/{descricao}")
-    public ResponseEntity<Optional<Curso>> getByDescricao(@PathVariable String descricao){
-        Optional<Curso> curso = cursosRepository.findAllByDescricaoContainingIgnoreCase(descricao);
+    public ResponseEntity<List<Curso>> getByDescricao(@PathVariable String descricao){
+        List<Curso> curso = cursosRepository.findAllByDescricaoContainingIgnoreCase(descricao);
         if(curso.isEmpty())
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         return ResponseEntity.ok(cursosRepository.findAllByDescricaoContainingIgnoreCase(descricao));
     }
 
-    @GetMapping("/usuario/{id}")
-    public ResponseEntity<List<Curso>> getByUsuario(@PathVariable Long id){
-        return ResponseEntity.ok(cursosRepository.findAllByUsuarioContaining(usuarioRepository.findById(id)));
+    @GetMapping("/categoria/{id}")
+    public ResponseEntity<List<Curso>> getByCategoria(@PathVariable Long id){
+        List<Curso> curso = cursosRepository.findAllByCategoria(categoriasRepository.findById(id));
+        if(curso.isEmpty())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        return ResponseEntity.ok(cursosRepository.findAllByCategoria(categoriasRepository.findById(id)));
     }
 
 

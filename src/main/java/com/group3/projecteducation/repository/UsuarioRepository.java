@@ -12,10 +12,8 @@ import java.util.Set;
 
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
-
-
     Optional<Usuario> findByUsuario(@Param("usuario") String usuario);
     List<Usuario> findAllByNomeContainingIgnoreCase(@Param("nome") String nome);
     List<Usuario> findAllByTipoUsuario(@Param("tipoUsuario") String tipoUsuario);
-    List<Usuario> findAllByCursoContaining (@Param("curso") Optional<Curso> curso);
+    List<Usuario> findAllByCurso (@Param("curso") Optional<Curso> curso);
 }
