@@ -1,8 +1,8 @@
 package com.group3.projecteducation.security;
 
 
-import com.group3.projecteducation.repository.UsuarioRepository;
 import com.group3.projecteducation.model.Usuario;
+import com.group3.projecteducation.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UserDetails;
