@@ -3,6 +3,7 @@ package com.group3.projecteducation.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class Usuario {
 
     @Schema(example = "email@email.com.br")
     @NotBlank
+    @Email
     private String usuario;
 
     @NotBlank
