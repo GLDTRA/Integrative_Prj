@@ -7,7 +7,7 @@ public class UsuarioLogin {
     private String nome;
     private String usuario;
     private String senha;
-    private String tipoUsuario;
+    private TipoUsuario tipoUsuario;
     private String token;
 
     public Long getId() {
@@ -42,18 +42,17 @@ public class UsuarioLogin {
         this.senha = senha;
     }
 
-    public String getTipoUsuario() {
+    public TipoUsuario getTipoUsuario() {
         return tipoUsuario;
     }
 
-    public void setTipoUsuario(String tipoUsuario) {
+    public void setTipoUsuario(TipoUsuario tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
     }
 
     public String getToken() {
         return token;
     }
-
     public void setToken(String token) {
         this.token = token;
     }

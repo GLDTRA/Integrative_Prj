@@ -1,6 +1,7 @@
 package com.group3.projecteducation.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.group3.projecteducation.TipoUsuario;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -27,9 +28,8 @@ public class Usuario {
 
     @NotBlank
     private String senha;
-
-    @NotBlank
-    private String tipoUsuario;
+    @Enumerated(EnumType.STRING)
+    private TipoUsuario tipoUsuario;
 
     @ManyToOne
     @JsonIgnoreProperties("usuario")
@@ -38,7 +38,7 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(Long id, String nome, String usuario, String senha, String tipoUsuario) {
+    public Usuario(Long id, String nome, String usuario, String senha, TipoUsuario tipoUsuario) {
         this.id = id;
         this.nome = nome;
         this.usuario = usuario;
@@ -78,11 +78,11 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public String getTipoUsuario() {
+    public TipoUsuario getTipoUsuario() {
         return this.tipoUsuario;
     }
 
-    public void setTipoUsuario(String tipoUsuario) {
+    public void setTipoUsuario(TipoUsuario tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
     }
 

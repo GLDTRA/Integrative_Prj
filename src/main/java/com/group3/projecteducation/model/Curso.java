@@ -10,6 +10,7 @@ import java.util.Optional;
 import java.util.Set;
 
 
+
 @Entity
 @Table(name = "tb_cursos")
 public class Curso {
@@ -22,9 +23,7 @@ public class Curso {
 
     @NotBlank
     private String descricao;
-
     private float preco;
-
     private short avaliacao;
 
     @ManyToOne
@@ -37,7 +36,6 @@ public class Curso {
 
     public Curso() {
     }
-
     public Curso(Long id, @NotBlank String titulo, @NotBlank String descricao, float preco, short avaliacao) {
         this.id = id;
         this.titulo = titulo;
